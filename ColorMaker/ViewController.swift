@@ -15,34 +15,36 @@ class ViewController: UIViewController {
     // MARK: Outlets
     
     @IBOutlet weak var colorView: UIView!
-    @IBOutlet weak var redControl: UISwitch!
-    @IBOutlet weak var greenControl: UISwitch!
-    @IBOutlet weak var blueControl: UISwitch!
+    @IBOutlet weak var redControl: UISlider!
+    @IBOutlet weak var greenControl: UISlider!
+    @IBOutlet weak var blueControl: UISlider!
+    @IBOutlet weak var alphaCOntrol: UISlider!
 
     // MARK: Life Cycle
     var alphaValue: CGFloat = 1
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Set colorView on launch
-        changeColorComponent()
+        sliderValueChanged(redControl)
     }
     
-    // MARK: Actions
-    
-    @IBAction func changeColorComponent() {
-        
-        let r: CGFloat = self.redControl.isOn ? 1 : 0
-        let g: CGFloat = self.greenControl.isOn ? 1 : 0
-        let b: CGFloat = self.blueControl.isOn ? 1 : 0
-                
-        colorView.backgroundColor = UIColor(red: r, green: g, blue: b, alpha: alphaValue)
-    }
     
     @IBAction func sliderValueChanged(_ sender: UISlider) {
         
-       alphaValue = CGFloat(sender.value)
-        changeColorComponent()
+        
+        let r: CGFloat = CGFloat(redControl.value)
+        let g: CGFloat = CGFloat(greenControl.value)
+        let b: CGFloat = CGFloat(blueControl.value)
+        let alphaValue = CGFloat(alphaCOntrol.value)
+        
+        print(r)
+        
+        print(g)
+        
+        print(b)
+        
+        print(alphaValue)
+        colorView.backgroundColor = UIColor(red: r, green: g, blue: b, alpha: alphaValue)
+        
     }
     
 }
