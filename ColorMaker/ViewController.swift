@@ -20,7 +20,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var blueControl: UISwitch!
 
     // MARK: Life Cycle
-    
+    var alphaValue: CGFloat = 1
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -32,16 +32,18 @@ class ViewController: UIViewController {
     
     @IBAction func changeColorComponent() {
         
-        // Make sure the program doesn't crash if the controls aren't connected
-        if self.redControl == nil {
-            return
-        }
-        
         let r: CGFloat = self.redControl.isOn ? 1 : 0
         let g: CGFloat = self.greenControl.isOn ? 1 : 0
         let b: CGFloat = self.blueControl.isOn ? 1 : 0
                 
-        colorView.backgroundColor = UIColor(red: r, green: g, blue: b, alpha: 1)
+        colorView.backgroundColor = UIColor(red: r, green: g, blue: b, alpha: alphaValue)
     }
+    
+    @IBAction func sliderValueChanged(_ sender: UISlider) {
+        
+       alphaValue = CGFloat(sender.value)
+        changeColorComponent()
+    }
+    
 }
 
